@@ -14,8 +14,15 @@
 
       <!-- Now using "mutation" from the store project. -->
       <!-- Here we can see that we use a mutation function with $store.commit -->
+<!--        
       <button @click="$store.commit('decreaseCounter')">-</button>
-      <button @click="$store.commit('increaseCounter')">+</button>
+      <button @click="$store.commit('increaseCounter')">+</button> -->
+
+      <!-- Now, if we need to handle data asyncrhtonousy, we use "dispatch" -->
+       <!-- To call a funtion on the "actions" object-->
+      <button @click="$store.dispatch('decreaseCounter')">-</button>
+      <button @click="$store.dispatch('increaseCounter')">+</button>
+
     </div>
   </div>
 </template>

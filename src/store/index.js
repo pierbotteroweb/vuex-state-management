@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from "axios";
 
 Vue.use(Vuex)
+
+const randomApi = "https://www.random.org/integers/?num=1&min=1&max=6&col=1&base=10&format=plain&rnd=new"
 
 export default new Vuex.Store({
   state: {
@@ -14,14 +17,31 @@ export default new Vuex.Store({
   mutations: {
     // Here iw where we will mutate the value of "counter" in the store.
     // before that, these methods were bing used in the "method" object in the component
-      increaseCounter(state) {
-        state.counter++
+    // OBS> We can only handle SYNCHRONOUS data when using "mutations"
+      increaseCounter(state, randomNumber) {
+        state.counter += randomNumber
       },
-      decreaseCounter(state) {
-        state.counter--
+      decreaseCounter(state, randomNumber) {
+        state.counter -= randomNumber
       }
   },
   actions: {
+    // If we need to mutate data from the store ASYNCHRONOUSLY,
+    // we need to do it from "actions";
+    // Here's an example of "actions" being used to handle a mutation
+    // that depends on an asynchronous value from an API
+    increaseCounter({ commit }){
+      axios(randomApi)
+      .then(response=>{
+        commit('increaseCounter', response.data)
+      })
+    },
+    decreaseCounter({ commit }){
+      axios(randomApi)
+      .then(response=>{
+        commit('decreaseCounter', response.data)
+      })
+    }
   },
   getters: {
   },
