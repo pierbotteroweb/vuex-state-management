@@ -12,8 +12,6 @@ export default new Vuex.Store({
     // here, the key will be available consistently for the whole project
     counter:0
   },
-  getters: {
-  },
   mutations: {
     // Here iw where we will mutate the value of "counter" in the store.
     // before that, these methods were bing used in the "method" object in the component
@@ -44,6 +42,11 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    // Here is a getter being used to return a value based on the state data
+    counterSquared(state) {
+      console.log("xxx")
+      return state.counter * state.counter
+    }
   },
   modules: {
   }

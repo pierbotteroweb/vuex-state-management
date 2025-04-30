@@ -7,9 +7,15 @@
       <!-- {{ counter }} -->
         {{ $store.state.counter }}
     </div>
+    <!-- Template to display an example of data obtained using a store getter -->
+     <div class="counter-squared">
+      {{ $store.state.counter }}
+      <sup>2</sup> =  {{ $store.getters.counterSquared }}
+     </div>
     <div class="buttons">
       <!-- Buttons comented because there is no more methods to handle the counter value here -->
-      <!-- <button @click="decreaseCounter">-</button>
+      <!-- 
+      <button @click="decreaseCounter">-</button>
       <button @click="increaseCounter">+</button> -->
 
       <!-- Now using "mutation" from the store project. -->
