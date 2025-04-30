@@ -2,11 +2,20 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <div class="counter">
-      {{ counter }}
+      <!-- This is the first block of code comented here, because now we don't  -->
+      <!-- have "counter" in our component. We will use the counter from the state manager -->
+      <!-- {{ counter }} -->
+        {{ $store.state.counter }}
     </div>
     <div class="buttons">
-      <button @click="decreaseCounter">-</button>
-      <button @click="increaseCounter">+</button>
+      <!-- Buttons comented because there is no more methods to handle the counter value here -->
+      <!-- <button @click="decreaseCounter">-</button>
+      <button @click="increaseCounter">+</button> -->
+
+      <!-- Now using "mutation" from the store project. -->
+      <!-- Here we can see that we use a mutation function with $store.commit -->
+      <button @click="$store.commit('decreaseCounter')">-</button>
+      <button @click="$store.commit('increaseCounter')">+</button>
     </div>
   </div>
 </template>
@@ -15,19 +24,23 @@
 
 export default {
   name: 'HomeView',
-  data() {
-    return {
-      counter: 0
-    }
-  },
-  methods: {
-    increaseCounter() {
-      this.counter++
-    },
-    decreaseCounter() {
-      this.counter--
-    }
-  }
+  // The whole data function will be commented here because we have just one parameter
+  // that will now be handled on the state manager. 
+  // data() {
+  //   return {
+  //     counter: 0
+  //   }
+  // },
+  // Here we are comenting the methods that used to handle the counter vaule from inside the component,
+  // and now we will handle this datas froom the state manager. for that we will use the "mutation" logic. 
+  // methods: {
+  //   increaseCounter() {
+  //     this.counter++
+  //   },
+  //   decreaseCounter() {
+  //     this.counter--
+  //   }
+  // }
 }
 </script>
 <style>
