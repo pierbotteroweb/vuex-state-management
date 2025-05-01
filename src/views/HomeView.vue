@@ -1,7 +1,12 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <div class="counter">
+    <!-- Using data binding to set color styling -->
+     <!-- indirectly here, because the value will be mutated -->
+     <!-- on the input data-dinding -->
+    <div
+      :style="{ color: $store.state.colorCode }"
+      class="counter">
       <!-- This is the first block of code comented here, because now we don't  -->
       <!-- have "counter" in our component. We will use the counter from the state manager -->
       <!-- {{ counter }} -->
@@ -30,6 +35,15 @@
       <button @click="$store.dispatch('increaseCounter')">+</button>
 
     </div>
+
+    <div>
+      <!-- Using input to change data used to set color -->
+      <!-- the v-model will use a computed value defined in this component -->
+    <input
+      v-model="colorCode"
+      type="text"
+      placeholder="Enter color here">
+    </div>
   </div>
 </template>
 
@@ -54,6 +68,18 @@ export default {
   //     this.counter--
   //   }
   // }
+  // using a 
+  computed: {
+    // This computed value will be used by the input data-binding
+    colorCode: {
+      get() {
+        return this.$store.state.colorCode
+      },
+      set(newValue){
+        this.$store.dispatch('setColorCode', newValue)        
+      }
+    }
+  }
 }
 </script>
 <style>
